@@ -7,31 +7,31 @@ from ultralytics import YOLO
 app = Flask(__name__)
 
 # 1. Load model YOLOv8 bawaan (COCO)
-model = YOLO('yolov8s.pt')
+model = YOLO('yolov8n.pt')
 model.conf = 0.5  # Confidence threshold
 
 # 2. Dictionary sederhana untuk memetakan nama kelas -> kategori (sampah)
 trash_category = {
     # Organik
-    "banana": "organik",
-    "apple": "organik",
-    "orange": "organik",
-    "broccoli": "organik",
-    "carrot": "organik",
-    "sandwich": "organik",
-    "pizza": "organik",
-    "hot dog": "organik",
-    "donut": "organik",
-    "cake": "organik",
+    "banana": "Organic",
+    "apple": "Organic",
+    "orange": "Organic",
+    "broccoli": "Organic",
+    "carrot": "Organic",
+    "sandwich": "Organic",
+    "pizza": "Organic",
+    "hot dog": "Organic",
+    "donut": "Organic",
+    "cake": "Organic",
 
     # Anorganik
-    "bottle": "anorganik",
-    "cup": "anorganik",
-    "fork": "anorganik",
-    "knife": "anorganik",
-    "spoon": "anorganik",
-    "bowl": "anorganik",
-    "wine glass": "anorganik",
+    "bottle": "Unorganic",
+    "cup": "Unorganic",
+    "fork": "Unorganic",
+    "knife": "Unorganic",
+    "spoon": "Unorganic",
+    "bowl": "Unorganic",
+    "wine glass": "Unorganic",
 }
 
 @app.route('/predict', methods=['POST'])
@@ -87,8 +87,8 @@ def predict():
         predictions.append(best_detection)
     else:
         predictions.append({
-            "class_name": "unknown",
-            "category": "unknown",
+            "class_name": "Unknown",
+            "category": "Unknown",
             "confidence": 0
         })
 
